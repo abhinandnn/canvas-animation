@@ -1,0 +1,13 @@
+body {
+    overflow: hidden;
+}
+
+#canva {
+    display: block;
+    margin: 0 auto;
+    width: 800px;
+    height: 600px;
+    background-color: black;
+}
+
+
