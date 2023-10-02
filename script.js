@@ -7,7 +7,6 @@ const colors = ["red","green","blue", "orange","purple","yellow","pink" ,"white"
 let balloons = [];
 let score = 0;
 let over = false;
-
 function printscore() {
     ctx.font = "24px Arial";
     ctx.fillStyle = "black";
@@ -54,6 +53,24 @@ function updateGameArea() {
         ctx.fillStyle = "black";
         ctx.fillText("Score: " + score, 20, 40);
     }
+canvas.addEventListener("click", popBalloon);
+function popBalloon(event) {
+    if (over) return;
+
+    const mouseX = event.clientX - canvas.offsetLeft;
+    const mouseY = event.clientY - canvas.offsetTop;
+
+    for (let i = balloons.length - 1; i >= 0; i--) {
+        const balloon = balloons[i];
+        const distance = Math.sqrt((mouseX - balloon.x) ** 2 + (mouseY - balloon.y) ** 2);
+
+        if (distance <= r) {
+            balloons.splice(i, 1);
+            score++;
+            return;
+        }
+    }
+}
 
     printscore();
     setTimeout(updateGameArea, 16);}
